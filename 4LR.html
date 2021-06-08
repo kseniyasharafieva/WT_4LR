@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание автобусов</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        .accordion {
+            background-color: #96E8FA;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active, .accordion:hover {
+            background-color: #D4F6FE;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #EBEBFF;
+            overflow: hidden;
+        }
+        #calendar4 {
+            width: 20%;
+            font: monospace;
+            line-height: 1.2em;
+            font-size: 15px;
+            text-align: center;
+        }
+        #calendar4 thead tr:last-child {
+            font-size: small;
+            font-weight: 700;
+            color: rgb(78, 223, 255);
+        }
+        #calendar4 tbody td {
+            height: 20%;
+            color: rgb(19, 110, 131);
+        }
+        #calendar4 tbody td:nth-child(1) {
+            font-size: small;
+            color: rgba(103, 103, 103, .7);
+        }
+        #calendar4 tbody td:nth-child(n+7), #calendar4 .holiday {
+            color: rgb(14, 14, 245);
+        }
+        #calendar4 tbody td.today {
+            outline: 3px solid black;
+        }
+    </style>
+ <style>
+   body {
+    background: #E3FDFD; /* Цвет фона */
+   
+   }
+  </style>
+</head>
+<body bgcolor="#AFFAFC">
+<h1 align="center">Ж/Д направления</h1>
+<table id="calendar4" class="table" align="left">
+    <thead>
+    <tr><td><td colspan="4"><select>
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+    </select><td colspan="3"><input type="number" value="" min="0" max="9999" size="4">
+    <tr><td><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
+    <tbody>
+</table>
+ <style>
+   .rightpic {
+    float: right; /* Выравнивание по правому краю */
+    margin: 10px 40px 5px 5px; /* Отступы вокруг фотографии */
+   }
+  </style>
+<p><img align="right" src="поезд.jpg"   width="500" height="310" alt="Письма мастера дзен" class="rightpic"></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p><font size="7" color="black" face="Arial">Куда хотите поехать?</font></p>
+<button class="accordion" data-toggle="tooltip" title="Список ж\д билетов">Куда подальше (Расписание поездов)</button>
+<div class="panel">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" title="Москва">
+            <div class="d-flex w-100 justify-content-between">
+                
+                <img
+                        class="_2DqrS DQzWH" data-test="IMAGE" alt="Контрабас"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%81%D0%B2%D0%B5%D1%82_%D0%BF%D1%80%D0%B8_-29_%D0%B3%D1%80%D0%B0%D0%B4%D1%83%D1%81%D0%B0%D1%85.jpg/198px-%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%81%D0%B2%D0%B5%D1%82_%D0%BF%D1%80%D0%B8_-29_%D0%B3%D1%80%D0%B0%D0%B4%D1%83%D1%81%D0%B0%D1%85.jpg"
+                        width="205" height="140"
+                        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%81%D0%B2%D0%B5%D1%82_%D0%BF%D1%80%D0%B8_-29_%D0%B3%D1%80%D0%B0%D0%B4%D1%83%D1%81%D0%B0%D1%85.jpg/198px-%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%81%D0%B2%D0%B5%D1%82_%D0%BF%D1%80%D0%B8_-29_%D0%B3%D1%80%D0%B0%D0%B4%D1%83%D1%81%D0%B0%D1%85.jpg">
+                <h3 class="mb-1">Москва</h3>
+            </div>
+          <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Москва" data-test="3450">Хочу туда!</button>
+            
+            <p class="mb-1">Ежедневные рейсы прямиком из Уфы</p>
+            
+
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" title="Санкт-Петербург">
+            <div class="d-flex w-100 justify-content-between">
+                <img
+                        class="_2DqrS DQzWH" data-test="IMAGE" alt="СПб"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Palace_Bridge_SPB_%28img2%29_Crop.jpg/399px-Palace_Bridge_SPB_%28img2%29_Crop.jpg"
+                        width="205" height="140"
+                        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Palace_Bridge_SPB_%28img2%29_Crop.jpg/399px-Palace_Bridge_SPB_%28img2%29_Crop.jpg">
+                <h3 class="mb-1">Санкт-Петербург</h3>
+              
+            </div>
+           <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="СПб" data-test="2000">Хочу туда!</button>
+            
+            <p class="mb-1">Красивейшие белые ночи ждут вас!</p>
+
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" title="Самара">
+            <div class="d-flex w-100 justify-content-between">
+                <img
+                        class="_2DqrS DQzWH" data-test="IMAGE" alt="Самара"
+                        src="https://img-cdn.tinkoffjournal.ru/i/3gUkCeVdjFFlztsfVGPFjDidJdrnyrgZ-GJ6PKIw5is/w:1200/aHR0cHM6Ly9pbWct/Y2RuLnRpbmtvZmZq/b3VybmFsLnJ1Ly0v/Y292ZXItc2FtYXJh/LWluc2lkZS44dnVp/amR2YnRybDAuanBn"
+                        width="205" height="140"
+                        srcset="https://img-cdn.tinkoffjournal.ru/i/3gUkCeVdjFFlztsfVGPFjDidJdrnyrgZ-GJ6PKIw5is/w:1200/aHR0cHM6Ly9pbWct/Y2RuLnRpbmtvZmZq/b3VybmFsLnJ1Ly0v/Y292ZXItc2FtYXJh/LWluc2lkZS44dnVp/amR2YnRybDAuanBn">
+                <h3 class="mb-1">Самара</h3>
+            </div>
+      <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Самара" data-test="950">Давай туда</button>
+         
+            <p class="mb-1">Хотите почувствовать себя россиянином?</p>
+        </a>
+    </div>
+</div>
+
+<button class="accordion" data-toggle="tooltip" title="Список выставок">В пригород, соседний город (Расписание электричек)</button>
+<div class="panel">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" title="Заказать билет">
+            <div class="d-flex w-100 justify-content-between">
+                <img
+                        class="_2DqrS DQzWH" data-test="IMAGE" alt="Аша"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Asha.jpg/435px-Asha.jpg"
+                         width="205" height="140"
+                        srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Asha.jpg/435px-Asha.jpg">
+                <h3 class="mb-1">Аша</h3>
+            </div>
+        <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Аша" data-test="750">Поехали!</button>
+      
+            <p class="mb-1">Ходят каждый день.</p>
+          
+        </a>
+ <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" title="Заказать билет">
+            <div class="d-flex w-100 justify-content-between">
+                <img
+                        class="_2DqrS DQzWH" data-test="IMAGE" alt="Раевка"
+                        src="https://mapio.net/images-p/24061294.jpg"
+                         width="205" height="140"
+                        srcset="https://mapio.net/images-p/24061294.jpg">
+                <h3 class="mb-1">Раевка</h3>
+            </div>
+        <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="Раевка" data-test="750">Поехали!</button>
+      
+            <p class="mb-1">Ходят каждый день.</p>
+          
+        </a>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Пункт отправления:</label>
+                        <input type="text" class="form-control" id="recipient-name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">ФИО:</label>
+                        <input type="text" class="form-control" id="fio"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Время отправления:</label>
+                        <input type="time" class="form-control" id="fio"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Количество билетов</label>
+                        <select class="form-control" id="select-id" onchange="">
+                            <option value="one">1</option>
+                            <option value="two">2</option>
+                            <option value="three">3</option>
+                            <option value="four">4</option>
+                            <option value="five">5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Стоимость:  </label>
+                        <input value="0" id="price-for-one" hidden="hidden" accept="false">
+                        <input class="col-form-label" id="price-id" accept="false"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Комментарий:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="buy()">Купить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function Calendar4(id, year, month) {
+
+        Date.prototype.getWeek = function () {
+            var target  = new Date(this.valueOf());
+            var dayNr   = (this.getDay() + 6) % 7;
+            target.setDate(target.getDate() - dayNr + 3);
+            var firstThursday = target.valueOf();
+            target.setMonth(0, 1);
+            if (target.getDay() != 4) {
+                target.setMonth(0, 1 + ((4 - target.getDay()) + 7) % 7);
+            }
+            return 1 + Math.ceil((firstThursday - target) / 604800000);
+        }
+
+        var Dlast = new Date(year,parseFloat(month)+1,0).getDate(),
+            D = new Date(year,month,Dlast),
+            DNlast = D.getDay(),
+            DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
+            m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
+            g = document.querySelector('#'+id+' input');
+
+        if (new Date(D.getFullYear(),D.getMonth(),1).getWeek() < 10) {
+            calendar = '<tr><td>0' + new Date(D.getFullYear(),D.getMonth(),1).getWeek();
+        }else{
+            calendar = '<tr><td>' + new Date(D.getFullYear(),D.getMonth(),1).getWeek();
+        }
+
+        if (DNfirst != 0) {
+            for(var  i = 1; i < DNfirst; i++) calendar += '<td>';
+        }else{
+            for(var  i = 0; i < 6; i++) calendar += '<td>';
+        }
+
+        for(var  i = 1; i <= Dlast; i++) {
+            if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
+                calendar += '<td class="today">' + i;
+            }else{
+                if (
+                    (i == 1 && D.getMonth() == 0 && ((D.getFullYear() > 1897 && D.getFullYear() < 1930) || D.getFullYear() > 1947)) ||
+                    (i == 2 && D.getMonth() == 0 && D.getFullYear() > 1992) ||
+                    ((i == 3 || i == 4 || i == 5 || i == 6 || i == 8) && D.getMonth() == 0 && D.getFullYear() > 2004) ||
+                    (i == 7 && D.getMonth() == 0 && D.getFullYear() > 1990) ||
+                    (i == 23 && D.getMonth() == 1 && D.getFullYear() > 2001) ||
+                    (i == 8 && D.getMonth() == 2 && D.getFullYear() > 1965) ||
+                    (i == 1 && D.getMonth() == 4 && D.getFullYear() > 1917) ||
+                    (i == 9 && D.getMonth() == 4 && D.getFullYear() > 1964) ||
+                    (i == 12 && D.getMonth() == 5 && D.getFullYear() > 1990) ||
+                    (i == 7 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 2005)) ||
+                    (i == 8 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 1992)) ||
+                    (i == 4 && D.getMonth() == 10 && D.getFullYear() > 2004)
+                ) {
+                    calendar += '<td class="holiday">' + i;
+                }else{
+                    calendar += '<td>' + i;
+                }
+            }
+            if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0 && i != Dlast) {
+                if (new Date(D.getFullYear(),D.getMonth(),i).getWeek() < 9) {
+                    calendar += '<tr><td>0' + new Date(D.getFullYear(),D.getMonth(),i+1).getWeek();
+                }else{
+                    calendar += '<tr><td>' + new Date(D.getFullYear(),D.getMonth(),i+1).getWeek();
+                }
+            }
+        }
+
+        if (DNlast != 0) {
+            for(var  i = DNlast; i < 7; i++) calendar += '<td>';
+        }
+
+        document.querySelector('#'+id+' tbody').innerHTML = calendar;
+        g.value = D.getFullYear();
+        m.selected = true;
+
+        if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
+            document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td><td><td><td><td><td><td>';
+        }
+
+        document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)';
+
+    }
+
+    Calendar4("calendar4",new Date().getFullYear(),new Date().getMonth());
+    document.querySelector('#calendar4').onchange = function Kalendar4() {
+        Calendar4("calendar4",document.querySelector('#calendar4 input').value,document.querySelector('#calendar4 select').options[document.querySelector('#calendar4 select').selectedIndex].value);
+    }
+</script>
+
+<div class="list-group">
+
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var price = button.data('test')
+            var modal = $(this)
+            modal.find('.modal-title').text('Билет: Уфа - ' + recipient)
+            document.getElementById("recipient-name").value=recipient
+            document.getElementById("price-id").value=price
+            document.getElementById("price-for-one").value=price
+        })
+
+        var checkbox = document.body.children[0];
+
+        $( "select" )
+            .change(function () {
+                var str = "";
+                $( "select option:selected" ).each(function() {
+                    str = $( this ).text();
+                });
+                if(document.getElementById("price-for-one")!=null){
+                document.getElementById("price-id").value=str*document.getElementById("price-for-one").value}
+            })
+            .change();
+
+        function buy(){
+            alert("Вы купили билет")
+        }
+    </script>
+
+
+
+
+
+</div>
+</body>
+</html>
